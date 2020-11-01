@@ -1,0 +1,7 @@
+Vue -> Virtual DOM -> Patch (list of changes to apply the DOM and sync again) -> New DOM
+
+Patch is smart and complex
+    Removes any Vue-only code
+    Will sort smartly to not patch a node unnecessarily
+    Because it diffs, if the "changes" yields the same result -> nothing happens == no cost
+    Might also be called = DOM Diffing (Diff)

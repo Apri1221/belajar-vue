@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        
+        <!-- Let's add Vue here -->
+        <!-- declarative rendering : v-bind:title="message" -->
+        <!-- shortcut -> :title="message" -->
+        <div id="app" v-bind:title="message">
+            <!-- output the message with curly brackets -->
+            {{message + ' in ' + platform}}
+        </div>
+
+        
+        <script>
+            // perlu key utk elementnya -> el:
+            // pass object data, assign dalam bentuk objek juga
+            // v-bind dinamakan directive
+            // Directive diawali dengan huruf v- untuk mengindikasikan/menginformasikan bahwa dia adalah atribut spesial yang dibawa oleh Vue
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    'message': 'Learning Vue!',
+                    'platform': 'Scrimba',
+                },
+            });
+        </script>
+    </body>
+</html>

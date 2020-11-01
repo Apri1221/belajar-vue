@@ -1,0 +1,50 @@
+<!-- computed property, by default as getter -->
+<!-- bagaimana caranya agar set data untuk atribut -->
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        
+        <!-- Let's add Vue here -->
+        <div id="app">
+            
+            <!-- <input name="field" v-model="field" />
+            
+            <p>The current values is: {{ field }}</p> -->
+
+            <input name="field" v-model="fullName" />
+            
+            <p>The current firstName value is: {{ firstName }}</p>
+            <p>The current lastName value is: {{ lastName }}</p>
+            
+        </div>
+        
+        <script>
+
+            // get dan set sudah ketetapan dalam vue (?)
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    field: '',
+                    firstName: '',
+                    lastName: '',
+                },
+                computed: {
+                    fullName: {
+                        get: function() {
+                            return this.firstName + ' ' + this.lastName;
+                        },
+                        set: function(newValue) {
+                            var names = newValue.split(' ');
+
+                            this.firstName = names[0];
+                            this.lastName = names[1];
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

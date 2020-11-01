@@ -1,0 +1,40 @@
+<!-- v-model : digunakan untuk terikat dengan input field DOM -->
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Let's add Vue here -->
+        <div id="app">
+            <!-- bind v-model ke key field di data -->
+            <input name="field" v-model="field" />
+
+            <p>The current value is: {{ field }}</p>
+            <!-- semua yang di ketik akan di sync ke field setiap tick -->
+
+
+            <p>The current value is: {{ exclamation }}</p>
+
+        </div>
+
+        <script>
+
+            // v-model digunakan untuk mengupdate data dari input field ke object di dalam data
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    field: '',
+                },
+                computed: {
+                    exclamation: () => {
+                        return this.field + '!';
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

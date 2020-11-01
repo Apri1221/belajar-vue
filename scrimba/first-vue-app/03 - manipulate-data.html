@@ -1,0 +1,45 @@
+<html>
+
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Let's add Vue here -->
+        <div id="app">
+            
+            <!-- {{ message }} -->
+            <!-- {{ exclamation }} -->
+            {{ reversedMessage }}
+
+        </div>
+
+        <script>
+
+            // object computed utk mengubah data
+            // computed properties digunakan untuk memanipulasi data
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Learning Vue'
+                },
+                computed: {
+                    exclamation: function() {
+                        return this.message + '!!!';
+                    },
+
+                    reversedMessage: () => {
+                        return this.message.split('').reverse().join('');
+                    },
+
+                    reversedMessage2: () => {
+                        return this.exclamation.split('').reverse().join('');
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>
