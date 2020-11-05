@@ -34,13 +34,16 @@
                 computed: {
                     fullName: {
                         get: function() {
-                            return this.firstName + ' ' + this.lastName;
+                            if (this.lastName != '') {
+                                return this.firstName + ' ' + this.lastName;
+                            }
+                            return this.firstName;
                         },
                         set: function(newValue) {
                             var names = newValue.split(' ');
 
                             this.firstName = names[0];
-                            this.lastName = names[1];
+                            this.lastName = names[1] == undefined ? '' : names[1];
                         }
                     }
                 }

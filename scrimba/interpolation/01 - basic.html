@@ -1,0 +1,52 @@
+<!-- 
+    what is interpolation? 
+    putting text in particular string
+
+    process of displaying a string that's defined within your component logic.
+
+    use interpolation double curly braces {{ }} with the name of the property inside
+    {{ name }}
+
+-->
+
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" class="bg-blue-300 flex flex-col justify-center items-center h-screen w-full">
+            
+            <!-- macam macam interpolasi vue -->
+            
+            <div v-once>Old: {{ message }}</div>
+
+            <div>New: {{ message }}</div>
+
+            <!-- interpolasi text tanpa curly braces -->
+            <div v-text="message"></div>
+
+            <!-- menampilkan html -->
+            <div v-html="message"></div>
+
+            <div>{{ bool_message ? 'YES' : 'NO' }}</div>
+
+            <!-- pop up title ketika diarahkan ke text beberapa detik -->
+            <div v-bind:title="'before ' + message">{{ message + 200 }}</div>
+            <div :title="'before ' + message">{{ message + 200 }}</div>
+            
+            <input v-model="message" />
+        </div>
+        
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: '<strong>HELLO</strong>',
+                    bool_message: true,
+                }
+            });
+        </script>
+    </body>
+</html>
