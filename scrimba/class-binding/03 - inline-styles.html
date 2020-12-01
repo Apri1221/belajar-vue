@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" class="bg-blue-300 h-screen w-full flex flex-col justify-center items-center text-sm relative">
+            
+            <div v-bind:style="{ color: myColor, 'font-size': '25px' }">Text</div>
+
+            <!-- bagian atas sama dengan bagian bawah, meskipun ada perbedaan naming, snake, dan camel case -->
+            <div v-bind:style="{ color: myColor, fontSize: '25px' }">Text</div>
+
+            <!-- bisa mengakses data dari data (size) -->
+            <div v-bind:style="{ color: myColor, fontSize: size + 'px' }">Text</div>
+
+            <div :style="myStyles">Text</div>
+            
+            <div :style="[myStyles, {fontSize: size + 'px'}]">Text</div>
+
+        </div>
+        
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    myStyles: { color: 'red', fontSize: 50 + 'px' },
+                    myColor: 'red',
+                    size: 100,
+                },
+            });
+        </script>
+    </body>
+</html>

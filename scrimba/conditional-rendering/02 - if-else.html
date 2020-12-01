@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" class="bg-blue-300 flex flex-col justify-center items-center h-screen w-full text-sm">
+            
+            <!-- bisa di aplikasikan di template tag -->
+            <!-- sifatnya destructive, secara fisik remove element dari DOM -->
+            <!-- di dalam if else, segala ekspresi yang bisa dilakukan di Javascript -->
+            <div v-if="number < 5" class="w-20 h-20 bg-red-700">&nbsp;</div>
+            <div v-else-if="number > 10" class="w-20 h-20 bg-gray-700">&nbsp;</div>
+            <div v-else class="w-20 h-20 bg-green-700">&nbsp;</div>
+            
+        </div>
+        
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    number: 11,
+                }
+            });
+        </script>
+    </body>
+</html>

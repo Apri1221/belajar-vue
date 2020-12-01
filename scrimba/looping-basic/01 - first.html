@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" class="bg-blue-300 h-screen w-full flex flex-col justify-center items-center text-sm relative">
+            
+            <!-- i dimulai dari 1 menuju ke 5, tp bukan index yang sebenarnya -->
+            <!-- k dimaksud dengan key, dan key nya dimulai dari 0 -->
+            <!-- <div v-for="(i, k) in 9">Hello {{ k }}</div> -->
+
+            <!-- coming trough as i variable (item-1, item-2, dst) -->
+            <!-- <div v-for="i in list">Hello {{ i }}</div> -->
+
+            <!-- naming convention tidak ada, bebas dibuat apa -->
+            <div v-for="item in list">Hello {{ item.name }} ({{ item.age }})</div>
+            
+            <br>
+
+            <select>
+                <option>Please select one</option>
+                <option v-for="item in list" value="item.age" v-text="item.name"></option>
+            </select>
+            
+
+            <!-- template v-for -->
+
+            <template v-for="item in list">
+                <p>{{ item.name }}</p>
+                <p>{{ item.age }}</p>
+            </template>
+        </div>
+        
+        <script>
+            // var app = new Vue({
+            //     el: '#app',
+            //     data: {
+            //         list: [
+            //             'item-1', 'item-2', 'item-3'
+            //         ]
+            //     }
+            // });
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    list: [
+                        { name: 'John', age: 25 },
+                        { name: 'Jane', age: 20 },
+                    ]
+                }
+            });
+        </script>
+    </body>
+</html>
