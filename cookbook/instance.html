@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <!-- axios -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+
+    </head>
+    <body>
+        <div id="app">
+            
+            <nav class="nav-wrapper">
+                <div class="logo">
+                    Vue
+                </div>
+                <div>
+                    <a href="#" class="link-item">Home</a>
+                    <a href="#" class="link-item">Services</a>
+                </div>
+            </nav>
+
+            <div class="body-text">
+                <p>Sumber: https://vuejs.org/v2/cookbook/adding-instance-properties.html#Base-Example</p>
+
+
+                <ul>
+                    <li v-for="user in users">{{ user.name }}</li>
+                </ul>
+            </div>
+        </div>
+        
+        <script>
+            /** 
+             * There may be data/utilities you’d like to use in many components, 
+             * but you don’t want to pollute the global scope. 
+             * In these cases, you can make them available to each Vue instance 
+             * by defining them on the prototype:
+             * 
+            */
+
+            Vue.prototype.$appName = 'My App'
+
+            /** 
+             * The Importance of Scoping Instance Properties
+             * 
+             * “Why does appName start with $? Is that important? What does it do?
+             * 
+             * No magic is happening here. $ is a convention Vue uses for properties that are available to all instances. 
+             * 
+             * This avoids conflicts with any defined data, computed properties, or methods.
+             */
+
+            Vue.prototype.appName = 'My App'
+
+            /**
+             * It would be "My App", then "The name of some other app", 
+             * because this.appName is overwritten (sort of) by data 
+             * when the instance is created. 
+             * 
+             * We scope instance properties with $ to avoid this. 
+             * You can even use your own convention if you’d like, 
+             * such as $_appName or ΩappName, 
+             * to prevent even conflicts with plugins or future features.
+             * 
+             */
+
+
+            // Replacing Vue Resource with Axios
+            // Alias axios to Vue.prototype.$http:
+            Vue.prototype.$http = axios
+
+            /** 
+             * jadi appName waktu di create di luar instance, menaikkan objek tersebut
+             * lalu vue datang dengan objek dengan nama yang sama, menimpa nilai sebelumnya
+             * 
+             * penggunaan vue prototype mendeklarasikan objek dan bisa digunakan scr global di semua env Vue
+            */
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    // Uh oh - appName is *also* the name of the
+                    // instance property we defined!
+                    appName: 'The name of some other app',
+                    users: []
+                },
+                beforeCreate: function() {
+                    console.log(this.appName)
+                },
+                created: function() {
+                    console.log(this.appName);
+                    // able to use methods like this.$http.get in any Vue instance
+                    let vm = this; // diganti dari var jadi let ttp work
+                    this.$http
+                        .get('https://jsonplaceholder.typicode.com/users')
+                        .then(function(response) {
+                            vm.users = response.data
+                            // kalau diganti jadi this.users, maka tidak work
+                            // kenapa? apakah karena ini ada dalam scope fungsi anonym?
+                            // this mengacu ke scope fungsi anonym dari then (chain)
+                            // sedangkan this vm mengacu ke object Vue
+                        })
+                }
+            });
+        </script>
+    </body>
+</html>

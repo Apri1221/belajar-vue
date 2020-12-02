@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+
+        <nav class="nav-wrapper">
+            <div class="logo">
+                Vue
+            </div>
+            <div>
+                <a href="#" class="link-item">Home</a>
+                <a href="#" class="link-item">Services</a>
+            </div>
+        </nav>
+
+        <div class="body-text">
+            <p>Sumber: https://vuejs.org/v2/cookbook/adding-instance-properties.html#Base-Example</p>
+        </div>
+
+        <div class="container flex justify-center ml-auto mr-auto">
+
+            <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
+
+                <p v-if="errors.length">
+                    <b>Please correct the following error(s):</b>
+                    <ul>
+                        <li v-for="error in errors">{{ error }}</li>
+                    </ul>
+                </p>
+
+                <p>
+                    <label for="name">Name</label>
+                    <input id="name" v-model="name" type="text" name="name">
+                </p>
+
+                <p>
+                    <label for="email">Email</label>
+                    <input id="email" v-model="email" type="email" name="email">
+                </p>
+
+                <p>
+                    <label for="movie">Favorite Movie</label>
+                    <select id="movie" v-model="movie" name="movie">
+                        <option>Star Wars</option>
+                        <option>Vanilla Sky</option>
+                        <option>Atomic Blonde</option>
+                    </select>
+                </p>
+
+                <p>
+                    <input type="submit" value="Submit">
+                </p>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                errors: [],
+                name: null,
+                email: null,
+                movie: null
+            },
+            methods: {
+                checkForm: function (e) {
+                    this.errors = [];
+
+                    if (!this.name) {
+                        this.errors.push("Name required.");
+                    }
+                    if (!this.email) {
+                        this.errors.push('Email required.');
+                    } else if (!this.validEmail(this.email)) {
+                        this.errors.push('Valid email required.');
+                    }
+
+                    if (!this.errors.length) {
+                        return true;
+                    }
+
+                    e.preventDefault();
+                },
+                validEmail: function (email) {
+                    var re =
+                        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(email);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
