@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <div id="app">
+            <!-- Vue App Here -->
+            <form method="post" action="#">
+                <input-field label="First Name" unique="first_name"
+                    v-on:updated="form.first_name = $event"></input-field>
+                <div>Current: {{ form.first_name }}</div>
+                <input-field label="Last Name" unique="last_name"
+                    v-on:updated="form.last_name = $event"></input-field>
+                <div>Current: {{ form.last_name }}</div>
+                <input-field label="Email" unique="email"
+                    v-on:updated="form.email = $event"></input-field>
+                <div>Current: {{ form.email }}</div>
+                <div class="input-wrapper">
+                    <button>Contact Us</button>
+                </div>
+            </form>
+        </div>
+        <!-- ada yang menarik disini, form.last_name = $event ini berhasil mendapatkan data dari emit dan memasukkan data ke form.last_name -->
+        <script src="index.pack.js"></script>
+    </body>
+</html>
