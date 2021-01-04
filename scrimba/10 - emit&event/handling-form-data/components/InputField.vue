@@ -14,7 +14,7 @@
         
         data: function () {
             return {
-                value: ''
+                value: '',
             }
         }
     }
