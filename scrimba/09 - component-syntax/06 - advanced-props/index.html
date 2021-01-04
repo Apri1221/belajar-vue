@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <div id="app">
+            
+            <!-- disini mengakses id dilalui dengan post.id -->
+            <props title="Title for my props" :is-published="false" :views="123" 
+                :id="post.id" :title="post.title" />
+               <!-- nanti id ditangkap oleh id di props, begitu juga dengan title -->
+
+
+            <!-- dengan mengirimkn v-bind="post" maka object post itu yang dikirimkan -->
+            <props :views="123" 
+                v-bind="post"  />
+
+                <!-- disini, v-bind="post" itu mengirim semua atribut post, dan nanti di props nya juga langsung kebaca id dan title, jadi sama kaya yg di atas -->
+
+                <!-- 
+                    jadi alternatif nya : 
+                    defenisikan satu satu --- :id="post.id" :title="post.title"
+                    kirim semua dengan v-bind --- v-bind="post"
+                    
+                    ingat, v-bind:id="post.id" shorthand = :id="post.id"
+                    v-bind="post" -> tidak pakai shorthand
+                -->
+
+            <!-- 
+                props: {
+                    id: Number,
+                    title: String,
+                }
+             -->
+            
+        </div>
+        
+        <script src="index.pack.js">
+            // code di bawah hanya untuk penampilan saja, seharusnya di index.pack.js
+            new Vue({
+                el: '#app',
+                
+                components: {
+                    Props
+                },
+                
+                data: {
+                    post: {
+                        id: 1,
+                        title: 'My title',
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
